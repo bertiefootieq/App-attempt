@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 11% 98%; /* #F5F7FA */
+  --foreground: 20 14.3% 4.1%; /* #1A1A1A */
+  --muted: 210 11% 96%; /* #F1F3F5 */
+  --muted-foreground: 25 5.3% 44.7%; /* #6B7280 */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 20 14.3% 4.1%; /* #1A1A1A */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 20 14.3% 4.1%; /* #1A1A1A */
+  --border: 20 5.9% 90%; /* #E5E7EB */
+  --input: 20 5.9% 90%; /* #E5E7EB */
+  --primary: 142 69% 38%; /* #2E7D4F */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --secondary: 210 11% 96%; /* #F1F3F5 */
+  --secondary-foreground: 24 9.8% 10%; /* #1F2937 */
+  --accent: 210 11% 96%; /* #F1F3F5 */
+  --accent-foreground: 24 9.8% 10%; /* #1F2937 */
+  --destructive: 0 84.2% 60.2%; /* #EF4444 */
+  --destructive-foreground: 60 9.1% 97.8%; /* #FEF2F2 */
+  --ring: 20 14.3% 4.1%; /* #1A1A1A */
+  --radius: 0.5rem;
+
+  /* Custom football theme colors */
+  --field-green: 142 69% 38%; /* #2E7D4F */
+  --field-light: 142 69% 58%; /* #34D399 */
+  --trophy-gold: 51 100% 50%; /* #FFD700 */
+  --correct: 134 69% 56%; /* #10B981 */
+  --incorrect: 0 84% 60%; /* #EF4444 */
+}
+
+.dark {
+  --background: 240 10% 3.9%; /* #0A0A0F */
+  --foreground: 0 0% 98%; /* #FAFAFA */
+  --muted: 240 3.7% 15.9%; /* #27272A */
+  --muted-foreground: 240 5% 64.9%; /* #A1A1AA */
+  --popover: 240 10% 3.9%; /* #0A0A0F */
+  --popover-foreground: 0 0% 98%; /* #FAFAFA */
+  --card: 240 10% 3.9%; /* #0A0A0F */
+  --card-foreground: 0 0% 98%; /* #FAFAFA */
+  --border: 240 3.7% 15.9%; /* #27272A */
+  --input: 240 3.7% 15.9%; /* #27272A */
+  --primary: 142 69% 38%; /* #2E7D4F */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --secondary: 240 3.7% 15.9%; /* #27272A */
+  --secondary-foreground: 0 0% 98%; /* #FAFAFA */
+  --accent: 240 3.7% 15.9%; /* #27272A */
+  --accent-foreground: 0 0% 98%; /* #FAFAFA */
+  --destructive: 0 62.8% 30.6%; /* #991B1B */
+  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+  --ring: 240 4.9% 83.9%; /* #D4D4D8 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .field-pattern {
+    background-image: 
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-pulse-correct {
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes bounceIn {
+    0% { 
+      transform: scale(0.3); 
+      opacity: 0; 
+    }
+    50% { 
+      transform: scale(1.05); 
+    }
+    70% { 
+      transform: scale(0.9); 
+    }
+    100% { 
+      transform: scale(1); 
+      opacity: 1; 
+    }
+  }
+
+  @keyframes slideUp {
+    from { 
+      transform: translateY(20px); 
+      opacity: 0; 
+    }
+    to { 
+      transform: translateY(0); 
+      opacity: 1; 
+    }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
