@@ -1,5 +1,15 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
+// Set your backend URL here:
+const API_BASE_URL = "https://firstfootieapp.onrender.com";
+
+function getApiUrl(url: string) {
+  // If url starts with "http", it's already absolute
+  if (url.startsWith("http")) return url;
+  // Otherwise, prepend the base URL
+  return `${API_BASE_URL}${url}`;
+}
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -12,7 +22,7 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  const res = await fetch(getApiUrl(url), {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -29,7 +39,7 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey[0] as string, {
+    const res = await fetch(getApiUrl(queryKey[0] as string), {
       credentials: "include",
     });
 
